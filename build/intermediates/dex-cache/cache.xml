@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/Users/mevashi/AndroidStudioProjects/IndoorAtlasApiExample/app/build/intermediates/pre-dexed/debug/indooratlasapi-009594e77f57b52f841b95f109fed699323ab91a.jar"
+        jar="/Users/mevashi/AndroidStudioProjects/IndoorAtlasApiExample/app/libs/indooratlasapi.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="b634f049a6165fab5c8f4b03f7f42f88dbffaebe"/>
+
+</pre-dex-items>
