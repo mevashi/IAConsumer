@@ -270,8 +270,9 @@ public class IndoorAtlasExample extends Activity implements IndoorAtlasListener 
                         currentY > lowerY &&  currentY < upperY) {
                     Log.d(TAG, "Int the fence I am");
                     msg = c.getString(c.getColumnIndex("MESSAGE"));
-                    Vibrator v = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
-                    v.vibrate(2000);
+//                    Vibrator v = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+//                    v.vibrate(2000);
+                    Log.d(TAG, "Message: " + msg);
                     showMessageOnUI(msg);
                     break;
                 }
