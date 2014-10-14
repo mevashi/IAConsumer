@@ -221,7 +221,7 @@ public class IndoorAtlasExample extends Activity implements IndoorAtlasListener 
                         "NAME",
                         "MESSAGE"  // Contract class constant for the locale column name
                 };
-        String[] mSelectionArgs = {""};
+//        String[] mSelectionArgs = {""};
         Log.d(TAG,"fences" + fences);
 
         /*ContentProviderClient yourCR = getContentResolver().acquireContentProviderClient(fences );
@@ -236,7 +236,7 @@ public class IndoorAtlasExample extends Activity implements IndoorAtlasListener 
         Cursor c = null;
 
         try {
-            c = cr.query(fences, mProjection, null, mSelectionArgs, null);
+            c = cr.query(fences, mProjection, null, null, null);
         }
         catch(Exception e) {
            Log.d(TAG,"Exception");
