@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.os.Vibrator;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
@@ -23,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
+
 /*
  * IndoorAtlas API example
  */
@@ -30,7 +32,8 @@ public class IndoorAtlasExample extends Activity implements IndoorAtlasListener 
 
 	private static final String TAG = "IndoorAtlasExample";
 
-	private TextView textView;
+	//private TextView textView;
+    private ImageView imgView;
 	private Handler handler = new Handler();
 	private IndoorAtlas indoorAtlas;
 	//Fields to save fence info
@@ -42,6 +45,7 @@ public class IndoorAtlasExample extends Activity implements IndoorAtlasListener 
     private EditText radiusEditTxt;
     private EditText msgEditTxt;
     private Button switchButton;
+    private Vibrator mVibrator ;
 
 	private boolean positioningOngoing = false;
 
@@ -64,7 +68,10 @@ public class IndoorAtlasExample extends Activity implements IndoorAtlasListener 
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		textView = (TextView) findViewById(R.id.textView1);
+		imgView = (ImageView) findViewById(R.id.imageView);
+        imgView.setBackgroundResource(R.drawable.imagesky);
+        mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+		//textView = (TextView) findViewById(R.id.textView1);
         //Save fence info
         /*fenceText = (TextView) findViewById(R.id.fenceTextView);
         radiusText = (TextView) findViewById(R.id.radiusTextView);
@@ -202,7 +209,7 @@ public class IndoorAtlasExample extends Activity implements IndoorAtlasListener 
 
 		Log.d(TAG, "onServiceUpdate()");
         //Log.d(TAG, "elements in fences" + fences.isEmpty());
-		
+        imgView.setBackgroundResource(R.drawable.imagesky);
 		long curTime = SystemClock.elapsedRealtime();
 		long diff = curTime - lastPositionTimestamp;
 		lastPositionTimestamp = curTime;
@@ -257,7 +264,7 @@ public class IndoorAtlasExample extends Activity implements IndoorAtlasListener 
                 double XVal = Double.valueOf(c.getString(c.getColumnIndex("METER_X"))).doubleValue();
                 double YVal = Double.valueOf(c.getString(c.getColumnIndex("METER_Y"))).doubleValue();
                 double RadiusVal = Double.valueOf(c.getString(c.getColumnIndex("RADIUS"))).doubleValue();
-
+                String F_Name = c.getString(c.getColumnIndex("NAME"));
                 Log.d(TAG, "current X and Y " + XVal + " " + YVal);
                 double upperX = RadiusVal + XVal;
                 double upperY = RadiusVal + YVal;
@@ -273,6 +280,15 @@ public class IndoorAtlasExample extends Activity implements IndoorAtlasListener 
 //                    Vibrator v = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
 //                    v.vibrate(2000);
                     Log.d(TAG, "Message: " + msg);
+                    if(F_Name.equals("fence1")) {
+                        imgView.setBackgroundResource(R.drawable.download);
+                    } else if(F_Name.equals("fence2")) {
+                        imgView.setBackgroundResource(R.drawable.images);
+                    } else if(F_Name.equals("fence3")) {
+                        imgView.setBackgroundResource(R.drawable.imagesky);
+                    } else {
+                        imgView.setBackgroundResource(R.drawable.imagesky);
+                    }
                     showMessageOnUI(msg);
                     break;
                 }
@@ -431,9 +447,14 @@ public class IndoorAtlasExample extends Activity implements IndoorAtlasListener 
 	private void showMessageOnUI(final String message) {
 		handler.post(new Runnable() {
 			public void run() {
-				textView.setText(message);
+				Context context = getApplicationContext();
+                Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
+                //toast.setDuration(4000);
+                toast.show();
+                mVibrator.vibrate(2000);
 			}
 		});
+
 	}
 
 	

@@ -17,6 +17,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.indooratlas.setup.provider.READ_USER_DICTIONARY"/>
     <uses-permission android:name="com.indooratlas.setup.provider.WRITE_USER_DICTIONARY"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <android:uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
@@ -56,8 +57,7 @@
        <!-- <provider android:name="FenceDataContentProvider"
             android:authorities="com.indooratlas.example.provider">
         </provider>-->
-        <uses-permission android:name="android.permission.VIBRATE"/>
-	<uses-permission android:name="com.indooratlas.setup.provider.READ_USER_DICTIONARY"/>
+
         <!--<provider android:name="FenceDataContentProvider"
             android:authorities="com.indooratlas.example.provider">-->
     </application>
